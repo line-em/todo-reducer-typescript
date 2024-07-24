@@ -1,9 +1,9 @@
 export type ActionType = "ADD" | "TOGGLE" | "DELETE";
 
 export interface Todo {
-	id: string;
-	text: string;
-	completed: boolean;
+	id?: string;
+	text?: string;
+	completed?: boolean;
 }
 
 export interface TodoAction extends Todo {
@@ -16,13 +16,15 @@ export const todoReducer = (state: Todo[], action: TodoAction): Todo[] => {
 			return [
 				...state,
 				{
-					id: action.id,
+					id: crypto.randomUUID(),
 					text: action.text,
 					completed: false
 				}
-            ];
-        case "TOGGLE":
-            return state;
+			];
+		case "TOGGLE":
+			return state.map((item) =>
+				item.id === action.id ? { ...item, completed: !item.completed } : item
+			);
 		default:
 			return state;
 	}

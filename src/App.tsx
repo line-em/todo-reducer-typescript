@@ -6,20 +6,18 @@ function App() {
 	const [task, setTask] = useState<string>("");
 	const [state, dispatch] = useReducer(todoReducer, []);
 
-	const handleDispatch = (e: React.FormEvent<HTMLFormElement>, action: ActionType) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>, action: ActionType) => {
 		e.preventDefault();
 		dispatch({
 			type: action,
-			text: task,
-			completed: false,
-			id: crypto.randomUUID()
+			text: task
 		});
 		setTask("");
 	};
 
 	return (
 		<main>
-			<form onSubmit={(e) => handleDispatch(e, "ADD")}>
+			<form onSubmit={(e) => handleSubmit(e, "ADD")}>
 				<label htmlFor="todo-input">What needs to be done?</label>
 				<input
 					id="todo-input"
@@ -33,6 +31,12 @@ function App() {
 								type="checkbox"
 								checked={item.completed}
 								id={item.id}
+								onChange={() =>
+									dispatch({
+										type: "TOGGLE",
+										id: item.id
+									})
+								}
 							/>
 							{item.text}
 						</li>
