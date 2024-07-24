@@ -1,31 +1,20 @@
-import { useReducer, useState } from "react";
 import "./App.css";
-import { type ActionType, todoReducer } from "./todoReducer";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Trash2 } from "lucide-react";
+import useTodos from "./hooks/useTodos";
 
 function App() {
 	const [animationParent] = useAutoAnimate();
-	const [task, setTask] = useState<string>("");
-	const [state, dispatch] = useReducer(todoReducer, []);
-
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>, action: ActionType) => {
-		e.preventDefault();
-		dispatch({
-			type: action,
-			text: task
-		});
-		setTask("");
-	};
+	const [addTodo, deleteTodo, completeTodo, state, todo, setTodo] = useTodos();
 
 	return (
 		<main>
-			<form onSubmit={(e) => handleSubmit(e, "ADD")}>
+			<form onSubmit={(e) => addTodo(e)}>
 				<label htmlFor="todo-input">What needs to be done?</label>
 				<input
 					id="todo-input"
-					onChange={(e) => setTask(e.target.value)}
-					value={task}
+					onChange={(e) => setTodo(e.target.value)}
+					value={todo}
 				/>
 				<ol ref={animationParent}>
 					{state.map((item) => (
@@ -34,22 +23,12 @@ function App() {
 								type="checkbox"
 								checked={item.completed}
 								id={item.id}
-								onChange={() =>
-									dispatch({
-										type: "TOGGLE",
-										id: item.id
-									})
-								}
+								onChange={() => completeTodo(item.id ?? "")}
 							/>
 							<label htmlFor={item.id}>{item.text}</label>
 							<button
 								type="button"
-								onClick={() =>
-									dispatch({
-										type: "DELETE",
-										id: item.id
-									})
-								}
+								onClick={() => deleteTodo(item.id ?? "")}
 							>
 								<Trash2 color="red" />
 							</button>
