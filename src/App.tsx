@@ -38,7 +38,17 @@ function App() {
 									})
 								}
 							/>
-							{item.text}
+							{item.text} -{" "}
+							<button
+								onClick={() =>
+									dispatch({
+										type: "DELETE",
+										id: item.id
+									})
+								}
+							>
+								Delete
+							</button>
 						</li>
 					))}
 				</ol>
