@@ -11,6 +11,7 @@ export interface TodoAction extends Todo {
 }
 
 export const todoReducer = (state: Todo[], action: TodoAction): Todo[] => {
+	console.log("State before ADD:", state);
 	switch (action.type) {
 		case "ADD":
 			return [

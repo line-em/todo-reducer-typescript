@@ -1,8 +1,10 @@
 import { useReducer, useState } from "react";
 import "./App.css";
 import { type ActionType, todoReducer } from "./todoReducer";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function App() {
+	const [animationParent] = useAutoAnimate();
 	const [task, setTask] = useState<string>("");
 	const [state, dispatch] = useReducer(todoReducer, []);
 
@@ -24,7 +26,7 @@ function App() {
 					onChange={(e) => setTask(e.target.value)}
 					value={task}
 				/>
-				<ol>
+				<ol ref={animationParent}>
 					{state.map((item) => (
 						<li key={item.id}>
 							<input
@@ -38,8 +40,9 @@ function App() {
 									})
 								}
 							/>
-							{item.text} -{" "}
+							{item.text}
 							<button
+								type="button"
 								onClick={() =>
 									dispatch({
 										type: "DELETE",

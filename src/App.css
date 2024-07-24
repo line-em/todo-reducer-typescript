@@ -1,15 +1,19 @@
 body {
 	background: hsl(240deg 20% 92.5%);
 	padding: 32px;
+	font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
 main {
 	--spacing: 16px;
-	background: white;
+	--half-spacing: 8px;
+	background: rgba(255, 255, 255, 0.685);
 	padding: 0px 2px;
-	border-radius: 8px;
-	box-shadow: 0px 1px 2px hsl(240deg 30% 30% / 0.1),
-		0px 2px 4px hsl(240deg 30% 30% / 0.1), 0px 4px 8px hsl(240deg 30% 30% / 0.1);
+	border-radius: var(--half-spacing);
+	max-width: 70ch;
+	margin-inline: auto;
 }
+
 form {
 	display: flex;
 	flex-direction: column;
@@ -17,39 +21,54 @@ form {
 	gap: var(--spacing);
 	padding: var(--spacing);
 	border-bottom: 1px solid hsl(240deg 30% 90%);
+	box-shadow: 0 0 0.5em #0000001a;
 }
-form label {
-	font-style: italic;
-}
+
 form input {
 	align-self: stretch;
 	font-size: 1.125rem;
 	padding: 8px;
+	border-radius: var(--half-spacing);
+	border: 1px solid gray;
 }
+
+label {
+	font-weight: 700;
+	font-size: 20px;
+}
+
 ol {
 	display: flex;
 	flex-direction: column;
-	padding: 0;
 	margin: 0;
 	list-style-type: none;
+	gap: var(--half-spacing);
+	width: 90%;
 }
+
 li {
 	display: flex;
 	align-items: center;
 	gap: var(--spacing);
 	padding: var(--spacing);
+	justify-content: space-between;
+	width: 100%;
+	background-color: #fff;
+	border-radius: var(--half-spacing);
+	box-shadow: 0 0 0.5rem #0000001a;
+	font-size: 0.8rem;
 }
-li:not(:last-of-type) {
-	border-bottom: 1px solid hsl(240deg 30% 90%);
-}
+
 li input {
 	width: 32px;
 	height: 32px;
 	cursor: pointer;
 }
+
 li label {
 	cursor: pointer;
 }
+
 input:checked + label {
 	text-decoration: line-through;
 	color: hsl(240deg 16% 40%);
