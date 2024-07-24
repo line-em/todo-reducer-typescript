@@ -1,6 +1,6 @@
 import { useReducer, useState } from "react";
 import "./App.css";
-import { ActionType, todoReducer } from "./todoReducer";
+import { type ActionType, todoReducer } from "./todoReducer";
 
 function App() {
 	const [task, setTask] = useState<string>("");
