@@ -28,7 +28,14 @@ function App() {
 				/>
 				<ol>
 					{state.map((item) => (
-						<li key={item.id}>{item.text}</li>
+						<li key={item.id}>
+							<input
+								type="checkbox"
+								checked={item.completed}
+								id={item.id}
+							/>
+							{item.text}
+						</li>
 					))}
 				</ol>
 			</form>

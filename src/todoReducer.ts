@@ -20,7 +20,9 @@ export const todoReducer = (state: Todo[], action: TodoAction): Todo[] => {
 					text: action.text,
 					completed: false
 				}
-			];
+            ];
+        case "TOGGLE":
+            return state;
 		default:
 			return state;
 	}
