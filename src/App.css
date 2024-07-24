@@ -32,7 +32,7 @@ form input {
 	border: 1px solid gray;
 }
 
-label {
+form > label {
 	font-weight: 700;
 	font-size: 20px;
 }
@@ -56,13 +56,12 @@ li {
 	background-color: #fff;
 	border-radius: var(--half-spacing);
 	box-shadow: 0 0 0.5rem #0000001a;
-	font-size: 0.8rem;
 }
 
 li input {
 	width: 32px;
-	height: 32px;
 	cursor: pointer;
+	accent-color: red;
 }
 
 li label {
@@ -72,4 +71,12 @@ li label {
 input:checked + label {
 	text-decoration: line-through;
 	color: hsl(240deg 16% 40%);
+}
+
+button {
+	padding: var(--half-spacing);
+	background-color: transparent;
+	border: lightgray 1px solid;
+	border-radius: var(--half-spacing);
+	cursor: pointer;
 }

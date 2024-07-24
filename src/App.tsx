@@ -2,6 +2,7 @@ import { useReducer, useState } from "react";
 import "./App.css";
 import { type ActionType, todoReducer } from "./todoReducer";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { Trash2 } from "lucide-react";
 
 function App() {
 	const [animationParent] = useAutoAnimate();
@@ -40,7 +41,7 @@ function App() {
 									})
 								}
 							/>
-							{item.text}
+							<label htmlFor={item.id}>{item.text}</label>
 							<button
 								type="button"
 								onClick={() =>
@@ -50,7 +51,7 @@ function App() {
 									})
 								}
 							>
-								Delete
+								<Trash2 color="red" />
 							</button>
 						</li>
 					))}
